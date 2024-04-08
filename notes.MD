@@ -35,8 +35,46 @@ module.exports = {
 };
 ```
 
-### Webpack script
-Add script to package.json to execute webpack.
+### NPM scripts for Webpack
+Add scripts to package.json to execute webpack.  For example:
+* `webpack`: Build the asset bundle
+* `webpack --watch` : Rebuild asset bundle automatically whenever asset sources are modified 
+
+```json
+{
+    "scripts": {
+        "build": "webpack",
+        "watch": "webpack --watch"
+    }
+}
+```
+
+
+## Development Server
+ref: https://webpack.js.org/guides/development/  
+This is a rudimentary web server for development.  By default, it listens on localhost port 8080.
+
+It also injects code into the bundle.js file to open a websocket back to itself to permit hot-module replacement. 
+
+Install the NPM package:
+```shell
+npm i -D webpack-dev-server
+```
+
+Configure the server in webpack config file:
+```js
+module.exports = {
+    devServer: {
+        static: './dist',
+    },
+};
+```
+* `static`: directory to serve files from (ie, "DocumentRoot")
+ 
+
+Add scripts to package.json to execute webpack.  For example:
+* `webpack serve`: Launch the server 
+* `webpack serve --open` : Launch the server and open a browser tab to the index page
 
 
 ## References
