@@ -1,2 +1,2 @@
 console.log( 'Hello again, Webpack!' );
-alert( "ok 1" );
+alert( "ok 2" );

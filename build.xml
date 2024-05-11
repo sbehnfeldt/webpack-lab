@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="CopyFiles" default="build">
+
+    <!-- Define properties -->
+    <property name="src.dir" value="src"/>
+    <property name="dist.dir" value="dist"/>
+
+    <!-- Define build target -->
+    <target name="build">
+        <!-- Create destination directory if it doesn't exist -->
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${dist.dir}/public"/>
+
+        <!-- Copy files from src to dist -->
+        <copy todir="${dist.dir}/public">
+            <fileset dir="${src.dir}/public"/>
+        </copy>
+
+        <exec executable="npm" dir="." passthru="true">
+            <arg value="run"/>
+            <arg value="build"/>
+        </exec>
+
+    </target>
+
+    <!-- Define the target to execute npm run build -->
+    <target name="webpack-build">
+        <exec executable="npm" dir="." passthru="true">
+            <arg value="run"/>
+            <arg value="build"/>
+        </exec>
+    </target>
+
+    <!-- Define the clean target -->
+    <target name="clean">
+        <delete>
+            <fileset dir="${dist.dir}" includes="**/*"/>
+        </delete>
+    </target>
+
+</project>
